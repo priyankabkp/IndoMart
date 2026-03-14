@@ -252,6 +252,8 @@ productList.innerHTML+=`
 
 <button onclick="addToCart(${index})">Add to Cart</button>
 
+<button onclick="addToWishlist(${index})">❤️ Wishlist</button>
+
 </div>
 
 `
@@ -292,8 +294,24 @@ cart.push(products[index])
 localStorage.setItem("cart",JSON.stringify(cart))
 
 updateCart()
+alert("Product added to Cart🛒")
 
 }
+
+
+
+function addToWishlist(index){
+
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || []
+
+wishlist.push(products[index])
+
+localStorage.setItem("wishlist", JSON.stringify(wishlist))
+
+alert("Product added to wishlist ❤️")
+
+}
+
 
 
 
@@ -311,13 +329,13 @@ updateCart()
 
 document.getElementById("search").addEventListener("keyup",function(){
 
-let search=this.value.toLowerCase()
+let searchValue=this.value.toLowerCase();
 
-let filtered=products.filter(p=>p.name.toLowerCase().includes(search))
+let filtered=products.filter(p=>p.name.toLowerCase().includes(searchValue));
 
-displayProducts(filtered)
+displayProducts(filtered);
 
-})
+});
 
 
 function scrollProducts(){
